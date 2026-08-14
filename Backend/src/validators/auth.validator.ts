@@ -1,8 +1,8 @@
 import { z } from "zod";
 
 export const registerSchema = z.object({
-  name: z.string().min(1, "Full name is required"),
-  email: z.email("Please enter a valid email"),
+  name: z.string().trim().min(1, "Full name is required"),
+  email: z.string().trim().email("Please enter a valid email"),
   password: z.string().min(8, "Password must be at least 8 characters"),
   confirmPassword: z.string().min(1, "Confirm Password is required")
 }).refine((data) => data.password === data.confirmPassword, {
@@ -11,6 +11,6 @@ export const registerSchema = z.object({
 });
 
 export const loginSchema = z.object({
-  email: z.email("Please enter a valid email"),
+  email: z.string().trim().email("Please enter a valid email"),
   password: z.string().min(1, "Password is required")
 });

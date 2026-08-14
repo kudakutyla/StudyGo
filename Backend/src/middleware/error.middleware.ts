@@ -19,5 +19,6 @@ export const errorHandler = (err: unknown, _req: Request, res: Response, _next: 
     return;
   }
 
+  console.error("Unhandled server error:", err);
   res.status(500).json({ success: false, message: "Something went wrong." });
 };
